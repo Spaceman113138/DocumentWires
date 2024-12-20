@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpx1kqpxnpfki"]
+
+[ext_resource type="Script" path="res://scripts/device.gd" id="1_osup3"]
+[ext_resource type="Script" path="res://scripts/input.gd" id="2_gthr0"]
+[ext_resource type="Script" path="res://scripts/Output.gd" id="3_tjmba"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77glj"]
+size = Vector2(100, 113)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hoha1"]
+size = Vector3(1.1, 1.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bjp6f"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_oo6j5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_luj16"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hpyq2"]
+radius = 13.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_xffeo"]
+
+[node name="testDevice" type="Area2D"]
+z_index = -2
+script = ExtResource("1_osup3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_77glj")
+
+[node name="highlight" type="MeshInstance2D" parent="."]
+visible = false
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(100, 100)
+mesh = SubResource("BoxMesh_hoha1")
+
+[node name="mesh" type="MeshInstance2D" parent="."]
+modulate = Color(0.454902, 1, 1, 1)
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(100, 100)
+mesh = SubResource("BoxMesh_bjp6f")
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="V-" type="Area2D" parent="inputs"]
+position = Vector2(-29, 50)
+script = ExtResource("2_gthr0")
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/V-"]
+visible = false
+scale = Vector2(35, 35)
+mesh = SubResource("SphereMesh_oo6j5")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/V-"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_luj16")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/V-"]
+visible = false
+shape = SubResource("CircleShape2D_hpyq2")
+
+[node name="outputs" type="Node2D" parent="."]
+
+[node name="V+" type="Area2D" parent="outputs"]
+position = Vector2(28.184, 49.5819)
+script = ExtResource("3_tjmba")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/V+"]
+visible = false
+scale = Vector2(35, 35)
+mesh = SubResource("SphereMesh_xffeo")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/V+"]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_luj16")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/V+"]
+visible = false
+shape = SubResource("CircleShape2D_hpyq2")

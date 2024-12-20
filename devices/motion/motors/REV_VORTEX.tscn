@@ -1,0 +1,183 @@
+[gd_scene load_steps=16 format=3 uid="uid://7lymjcqqn37w"]
+
+[ext_resource type="Script" path="res://scripts/device.gd" id="1_yqqv6"]
+[ext_resource type="Texture2D" uid="uid://bc0kvrje4621x" path="res://images/NEO Vortex.svg" id="2_wyju5"]
+[ext_resource type="Script" path="res://scripts/input.gd" id="3_4prgf"]
+[ext_resource type="Script" path="res://scripts/Output.gd" id="4_bb0m3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgfvf"]
+size = Vector2(178, 282)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1xqmc"]
+size = Vector2(295, 190)
+orientation = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_1ew48"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yjauv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j7bms"]
+radius = 20.025
+
+[sub_resource type="SphereMesh" id="SphereMesh_wfm54"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_wgks6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_53pmi"]
+radius = 5.38516
+
+[sub_resource type="SphereMesh" id="SphereMesh_2v2nj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_owc5a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5cv0d"]
+radius = 5.38516
+
+[node name="REV Vortex" type="Area2D"]
+z_index = -1
+script = ExtResource("1_yqqv6")
+canEnabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_fgfvf")
+
+[node name="highlight" type="MeshInstance2D" parent="."]
+visible = false
+rotation = -1.5708
+mesh = SubResource("PlaneMesh_1xqmc")
+
+[node name="NeoVortex" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_wyju5")
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="V-" type="Area2D" parent="inputs"]
+position = Vector2(40, 117)
+script = ExtResource("3_4prgf")
+wireSizeMin = 13
+wireSizeMax = 18
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/V-"]
+visible = false
+scale = Vector2(40, 40)
+mesh = SubResource("SphereMesh_1ew48")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/V-"]
+modulate = Color(0, 0, 0, 1)
+scale = Vector2(30, 30)
+mesh = SubResource("SphereMesh_yjauv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/V-"]
+visible = false
+shape = SubResource("CircleShape2D_j7bms")
+
+[node name="V+" type="Area2D" parent="inputs"]
+position = Vector2(-40, 117)
+script = ExtResource("3_4prgf")
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/V+"]
+visible = false
+scale = Vector2(40, 40)
+mesh = SubResource("SphereMesh_1ew48")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/V+"]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(30, 30)
+mesh = SubResource("SphereMesh_yjauv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/V+"]
+visible = false
+shape = SubResource("CircleShape2D_j7bms")
+
+[node name="CAN H" type="Area2D" parent="inputs"]
+z_index = -1
+position = Vector2(7, 92.5)
+script = ExtResource("3_4prgf")
+wireSizeMin = 7
+wireSizeMax = 7
+type = "CAN"
+color = Color(0.996094, 0.983448, 0.186768, 1)
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/CAN H"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_wfm54")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inputs/CAN H"]
+modulate = Color(0.996094, 0.983448, 0.186768, 1)
+z_index = 1
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_wgks6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/CAN H"]
+visible = false
+shape = SubResource("CircleShape2D_53pmi")
+
+[node name="CAN L" type="Area2D" parent="inputs"]
+position = Vector2(19, 92.5)
+script = ExtResource("3_4prgf")
+wireSizeMin = 7
+wireSizeMax = 7
+type = "CAN"
+color = Color(0.111984, 0.699219, 0.12116, 1)
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/CAN L"]
+visible = false
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_wfm54")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="inputs/CAN L"]
+modulate = Color(0.113725, 0.698039, 0.121569, 1)
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_wgks6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/CAN L"]
+visible = false
+shape = SubResource("CircleShape2D_53pmi")
+
+[node name="outputs" type="Node2D" parent="."]
+
+[node name="CAN H" type="Area2D" parent="outputs"]
+position = Vector2(-19, 92.5)
+script = ExtResource("4_bb0m3")
+color = Color(0.996094, 0.983448, 0.186768, 1)
+wireSize = 7
+type = "CAN"
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/CAN H"]
+visible = false
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_2v2nj")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="outputs/CAN H"]
+modulate = Color(0.996094, 0.983448, 0.186768, 1)
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_owc5a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/CAN H"]
+visible = false
+shape = SubResource("CircleShape2D_5cv0d")
+
+[node name="CAN L" type="Area2D" parent="outputs"]
+position = Vector2(-7, 92.5)
+script = ExtResource("4_bb0m3")
+color = Color(0.111984, 0.699219, 0.12116, 1)
+wireSize = 7
+type = "CAN"
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/CAN L"]
+visible = false
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_2v2nj")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="outputs/CAN L"]
+modulate = Color(0.111984, 0.699219, 0.12116, 1)
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_owc5a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/CAN L"]
+visible = false
+shape = SubResource("CircleShape2D_5cv0d")

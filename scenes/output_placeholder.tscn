@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt4b8u7le7iu1"]
+
+[ext_resource type="Script" path="res://scripts/output_placeholder.gd" id="1_mpvfx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tajx3"]
+radius = 15.0333
+
+[sub_resource type="SphereMesh" id="SphereMesh_w7cic"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_f0ab7"]
+
+[node name="outputPlaceholder" type="Area2D"]
+script = ExtResource("1_mpvfx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tajx3")
+
+[node name="highlight" type="MeshInstance2D" parent="."]
+scale = Vector2(34.066, 35)
+mesh = SubResource("SphereMesh_w7cic")
+
+[node name="base" type="MeshInstance2D" parent="."]
+modulate = Color(0.520657, 0.133301, 0.8125, 1)
+scale = Vector2(30, 30)
+mesh = SubResource("SphereMesh_f0ab7")

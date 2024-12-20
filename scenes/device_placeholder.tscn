@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cq3vpk6idf1qi"]
+
+[ext_resource type="Script" path="res://scripts/device_placeholder.gd" id="1_kvmm8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0oxu0"]
+size = Vector2(200, 300)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f0pj2"]
+size = Vector2(220, 320)
+orientation = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6f6g7"]
+size = Vector2(200, 300)
+orientation = 2
+
+[node name="devicePlaceholder" type="Node2D"]
+script = ExtResource("1_kvmm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0oxu0")
+
+[node name="highlight" type="MeshInstance2D" parent="."]
+mesh = SubResource("PlaneMesh_f0pj2")
+
+[node name="base" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0.789063, 0.659607, 1)
+mesh = SubResource("PlaneMesh_6f6g7")
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="outputs" type="Node2D" parent="."]

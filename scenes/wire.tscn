@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsri1jyecvgnk"]
+
+[ext_resource type="Script" path="res://scripts/wire.gd" id="1_iadrf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_adjxj"]
+radius = 22.561
+
+[node name="Wire" type="Area2D"]
+z_index = -1
+script = ExtResource("1_iadrf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="endCollider" type="Area2D" parent="."]
+visible = false
+input_pickable = false
+
+[node name="endCollision" type="CollisionShape2D" parent="endCollider"]
+visible = false
+shape = SubResource("CircleShape2D_adjxj")
+
+[connection signal="area_entered" from="endCollider" to="." method="_on_end_collider_area_entered"]
+[connection signal="area_exited" from="endCollider" to="." method="_on_end_collider_area_exited"]

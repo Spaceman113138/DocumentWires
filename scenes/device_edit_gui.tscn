@@ -1,0 +1,92 @@
+[gd_scene load_steps=3 format=3 uid="uid://clw8w82ei0avt"]
+
+[ext_resource type="Script" path="res://scripts/device_edit_gui.gd" id="1_mo0dm"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_03euj"]
+color = Color(0.180392, 0.180392, 0.180392, 1)
+thickness = 8
+
+[node name="DeviceEditGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_mo0dm")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -243.0
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="width" type="Label" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Width: "
+
+[node name="widthEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="height" type="Label" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Height: "
+
+[node name="heightEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="offset" type="Label" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Highlight Offset"
+
+[node name="highlightght edit" type="LineEdit" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="color Label" type="Label" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Device Color"
+
+[node name="color button" type="ColorPickerButton" parent="ScrollContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Device Color"
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_03euj")
+
+[node name="Add Output" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Output"
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+theme_override_styles/separator = SubResource("StyleBoxLine_03euj")
+
+[node name="Add Input" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Add Input"
+
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/widthEdit" to="." method="_on_width_edit_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/heightEdit" to="." method="_on_height_edit_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/GridContainer/highlightght edit" to="." method="_on_highlightght_edit_text_changed"]
+[connection signal="color_changed" from="ScrollContainer/VBoxContainer/GridContainer/color button" to="." method="_on_color_button_color_changed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Add Output" to="." method="_on_add_output_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Add Input" to="." method="_on_add_input_pressed"]

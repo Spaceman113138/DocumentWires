@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://4vgk7p2ldgll"]
+
+[ext_resource type="Script" path="res://scripts/DeviceSelectContainer.gd" id="1_wqfv7"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 3
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_force_pass_scroll_events = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.14902, 0.180392, 0.619608)
+
+[node name="DeviceSelectContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wqfv7")
+
+[connection signal="mouse_entered" from="." to="DeviceSelectContainer" method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="." to="DeviceSelectContainer" method="_on_control_mouse_exited"]

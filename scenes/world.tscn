@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://7550gfbnkav8"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_3pd6p"]
+[ext_resource type="Script" path="res://scripts/world_camera.gd" id="1_hy0cw"]
+[ext_resource type="PackedScene" uid="uid://cklxi1w5bu8aj" path="res://scenes/subsystem.tscn" id="2_i76vj"]
+[ext_resource type="PackedScene" uid="uid://baexii28atxbs" path="res://scenes/menu_gui.tscn" id="3_hlyx4"]
+[ext_resource type="PackedScene" uid="uid://4vgk7p2ldgll" path="res://scenes/mainGUI.tscn" id="4_bwu11"]
+[ext_resource type="PackedScene" uid="uid://c0gf36guv8ggm" path="res://scenes/device_gui.tscn" id="4_e0tk7"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_3pd6p")
+
+[node name="worldCamera" type="Camera2D" parent="."]
+position = Vector2(3, -12)
+anchor_mode = 0
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("1_hy0cw")
+
+[node name="Subsystems" type="Node2D" parent="."]
+
+[node name="worldSystem" parent="Subsystems" instance=ExtResource("2_i76vj")]
+position = Vector2(-7833, -6689)
+boxSize = Vector2(1, 1)
+
+[node name="Devices" type="Node2D" parent="."]
+
+[node name="Wires" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="menuGUI" parent="CanvasLayer" instance=ExtResource("3_hlyx4")]
+
+[node name="device GUI" parent="CanvasLayer" instance=ExtResource("4_e0tk7")]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("4_bwu11")]
+top_level = true
+offset_top = -150.0

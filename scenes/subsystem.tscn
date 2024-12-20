@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cklxi1w5bu8aj"]
+
+[ext_resource type="Script" path="res://scripts/Subsystem.gd" id="1_ivvox"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0royw"]
+size = Vector2(1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v2acb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_umk8u"]
+
+[node name="Subsystem" type="Area2D"]
+z_index = -2
+script = ExtResource("1_ivvox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_0royw")
+
+[node name="outlineMesh" type="MeshInstance2D" parent="."]
+modulate = Color(0, 0, 0.517647, 1)
+mesh = SubResource("BoxMesh_v2acb")
+
+[node name="innerMesh" type="MeshInstance2D" parent="."]
+modulate = Color(0.215686, 0.533333, 0.686275, 1)
+mesh = SubResource("BoxMesh_umk8u")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwrujdhajr80j"]
+
+[ext_resource type="Script" path="res://scripts/device.gd" id="1_6ouw8"]
+[ext_resource type="Texture2D" uid="uid://diqtx4h7b5ssf" path="res://images/RSL.svg" id="2_nqxtx"]
+[ext_resource type="Script" path="res://scripts/input.gd" id="3_ivxge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu6jl"]
+size = Vector2(183, 107)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wkygs"]
+size = Vector2(192, 123)
+orientation = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_qwl6q"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3bo2w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iww37"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnt1j"]
+radius = 5.09902
+
+[node name="Device" type="Area2D"]
+script = ExtResource("1_6ouw8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_gu6jl")
+
+[node name="highlight" type="MeshInstance2D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_wkygs")
+
+[node name="Rsl" type="Sprite2D" parent="."]
+texture = ExtResource("2_nqxtx")
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="V-" type="Area2D" parent="inputs"]
+position = Vector2(-79, 12.5)
+script = ExtResource("3_ivxge")
+wireSizeMin = 10
+wireSizeMax = 10
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/V-"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_qwl6q")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/V-"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_3bo2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/V-"]
+visible = false
+shape = SubResource("CircleShape2D_iww37")
+
+[node name="V+" type="Area2D" parent="inputs"]
+position = Vector2(-79, -13)
+script = ExtResource("3_ivxge")
+wireSizeMin = 10
+wireSizeMax = 10
+color = Color(1, 0, 0, 1)
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/V+"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_qwl6q")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/V+"]
+modulate = Color(1, 0, 0, 1)
+z_index = -1
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_3bo2w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/V+"]
+visible = false
+shape = SubResource("CircleShape2D_vnt1j")
+
+[node name="outputs" type="Node2D" parent="."]

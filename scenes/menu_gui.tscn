@@ -1,0 +1,77 @@
+[gd_scene load_steps=2 format=3 uid="uid://baexii28atxbs"]
+
+[ext_resource type="Script" path="res://scripts/menu_gui.gd" id="1_33p5k"]
+
+[node name="menuGUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_33p5k")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="SaveAs Button" type="Button" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save Layout As"
+
+[node name="Save Button" type="Button" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Save Layout"
+
+[node name="Load Button" type="Button" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Load Layout"
+
+[node name="NewDevice Button" type="Button" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "New Device"
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Layout Name: "
+
+[node name="name edit" type="LineEdit" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+max_length = 100
+expand_to_text_length = true
+
+[node name="SaveDialogue" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(210, 150)
+size = Vector2i(730, 400)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 1
+use_native_dialog = true
+
+[node name="LoadDialogue" type="FileDialog" parent="."]
+auto_translate_mode = 1
+title = "Open a File"
+position = Vector2i(210, 150)
+size = Vector2i(730, 400)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.tscn;Layout File")
+use_native_dialog = true
+
+[connection signal="pressed" from="PanelContainer/HBoxContainer/SaveAs Button" to="." method="_on_save_as_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Save Button" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Load Button" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/NewDevice Button" to="." method="_on_new_device_button_pressed"]
+[connection signal="text_changed" from="PanelContainer/HBoxContainer/name edit" to="." method="_on_name_edit_text_changed"]
+[connection signal="confirmed" from="SaveDialogue" to="." method="_on_save_dialogue_confirmed"]
+[connection signal="dir_selected" from="SaveDialogue" to="." method="_on_save_dialogue_dir_selected"]
+[connection signal="file_selected" from="SaveDialogue" to="." method="_on_save_dialogue_file_selected"]
+[connection signal="file_selected" from="LoadDialogue" to="." method="_on_load_dialogue_file_selected"]

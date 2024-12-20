@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://bt6fc4hvirgco"]
+
+[ext_resource type="Script" path="res://scripts/device.gd" id="1_gm0y8"]
+[ext_resource type="Texture2D" uid="uid://bmgdnhxejrleo" path="res://images/TTB Analog Encoder.svg" id="2_pbe10"]
+[ext_resource type="Script" path="res://scripts/input.gd" id="3_7mmms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88ihu"]
+size = Vector2(40, 84)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yx2ar"]
+orientation = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eumjb"]
+radius = 13.0384
+
+[sub_resource type="SphereMesh" id="SphereMesh_f015a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8851v"]
+
+[node name="ttbEncoder" type="Area2D"]
+script = ExtResource("1_gm0y8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_88ihu")
+
+[node name="highlight" type="MeshInstance2D" parent="."]
+position = Vector2(-9.53674e-07, -0.5)
+scale = Vector2(23, 44.5)
+mesh = SubResource("PlaneMesh_yx2ar")
+
+[node name="TtbAnalogEncoder" type="Sprite2D" parent="."]
+texture = ExtResource("2_pbe10")
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="WireInput" type="Area2D" parent="inputs"]
+position = Vector2(0, 23)
+script = ExtResource("3_7mmms")
+wireSizeMin = 10
+wireSizeMax = 10
+color = Color(1, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/WireInput"]
+visible = false
+shape = SubResource("CircleShape2D_eumjb")
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/WireInput"]
+visible = false
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_f015a")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/WireInput"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_8851v")
+
+[node name="outputs" type="Node2D" parent="."]

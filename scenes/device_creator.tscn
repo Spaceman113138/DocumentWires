@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccj2sodae35lg"]
+
+[ext_resource type="Script" path="res://scripts/device_creator.gd" id="1_1ksvf"]
+[ext_resource type="PackedScene" uid="uid://cq3vpk6idf1qi" path="res://scenes/device_placeholder.tscn" id="2_8kqjx"]
+[ext_resource type="PackedScene" uid="uid://gh4ftbq3pkfq" path="res://scenes/device_create_menu.tscn" id="3_ajw4w"]
+[ext_resource type="PackedScene" uid="uid://clw8w82ei0avt" path="res://scenes/device_edit_gui.tscn" id="3_rg6md"]
+
+[node name="deviceCreator" type="Node2D"]
+script = ExtResource("1_1ksvf")
+
+[node name="devicePlaceholder" parent="." instance=ExtResource("2_8kqjx")]
+position = Vector2(576, 323)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 325)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="deviceCreateMenu" parent="CanvasLayer" instance=ExtResource("3_ajw4w")]
+
+[node name="DeviceEditGUI" parent="CanvasLayer" instance=ExtResource("3_rg6md")]

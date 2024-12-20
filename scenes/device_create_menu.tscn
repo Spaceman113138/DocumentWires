@@ -1,0 +1,61 @@
+[gd_scene load_steps=2 format=3 uid="uid://gh4ftbq3pkfq"]
+
+[ext_resource type="Script" path="res://scripts/device_create_menu.gd" id="1_elvx3"]
+
+[node name="deviceCreateMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_vertical = 0
+mouse_filter = 1
+script = ExtResource("1_elvx3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+
+[node name="save" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Save Device"
+
+[node name="load" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "load device"
+
+[node name="return" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Return To Layout"
+
+[node name="New Device" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "New Device"
+
+[node name="name label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Name: "
+
+[node name="name Edit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+max_length = 100
+expand_to_text_length = true
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+position = Vector2i(190, 90)
+size = Vector2i(750, 500)
+ok_button_text = "Open"
+file_mode = 0
+access = 1
+filters = PackedStringArray("*.tscn;\"device\"")
+use_native_dialog = true
+
+[connection signal="pressed" from="HBoxContainer/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="HBoxContainer/load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="HBoxContainer/return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="HBoxContainer/New Device" to="." method="_on_new_device_pressed"]
+[connection signal="text_changed" from="HBoxContainer/name Edit" to="." method="_on_name_edit_text_changed"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_file_dialog_file_selected"]

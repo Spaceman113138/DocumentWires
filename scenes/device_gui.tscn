@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0gf36guv8ggm"]
+
+[ext_resource type="Script" path="res://scripts/device_gui.gd" id="1_pso6i"]
+
+[node name="device GUI" type="Control"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_pso6i")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129412, 0.14902, 0.180392, 0.619608)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Device Name" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Device Name"]
+layout_mode = 2
+text = "Device  Name:"
+
+[node name="TextEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Device Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Device Name"
+
+[node name="Position Container" type="GridContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Rot Label" type="Label" parent="ScrollContainer/VBoxContainer/Position Container"]
+layout_mode = 2
+text = "Rotation (Degrees):  "
+
+[node name="Rot Edit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Position Container"]
+layout_mode = 2
+placeholder_text = "Degrees"
+expand_to_text_length = true
+
+[node name="CAN Label" type="Label" parent="ScrollContainer/VBoxContainer/Position Container"]
+layout_mode = 2
+text = "CAN ID"
+
+[node name="CAN Edit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Position Container"]
+layout_mode = 2
+placeholder_text = "id"
+
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/Device Name/TextEdit" to="." method="_on_text_edit_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/Position Container/Rot Edit" to="." method="_on_rot_edit_text_changed"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/Position Container/CAN Edit" to="." method="_on_can_edit_text_changed"]

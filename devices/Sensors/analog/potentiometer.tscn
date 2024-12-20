@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://sm8tc7e6e1q1"]
+
+[ext_resource type="Script" path="res://scripts/device.gd" id="1_tuv8e"]
+[ext_resource type="Texture2D" uid="uid://pen4fi4gii5s" path="res://images/Potentiometer.svg" id="2_y4poa"]
+[ext_resource type="Script" path="res://scripts/input.gd" id="3_lqn11"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwp2j"]
+size = Vector2(47, 66)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i2n1g"]
+radius = 13.0384
+
+[sub_resource type="SphereMesh" id="SphereMesh_xgxo5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_45fpb"]
+
+[node name="Potentiometer" type="Area2D"]
+script = ExtResource("1_tuv8e")
+
+[node name="Potentiometer" type="Sprite2D" parent="."]
+texture = ExtResource("2_y4poa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_bwp2j")
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="WireInput" type="Area2D" parent="inputs"]
+position = Vector2(0, -23)
+script = ExtResource("3_lqn11")
+wireSizeMin = 10
+wireSizeMax = 10
+type = "analog"
+color = Color(1, 1, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/WireInput"]
+visible = false
+shape = SubResource("CircleShape2D_i2n1g")
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/WireInput"]
+visible = false
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_xgxo5")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/WireInput"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_45fpb")
+
+[node name="outputs" type="Node2D" parent="."]

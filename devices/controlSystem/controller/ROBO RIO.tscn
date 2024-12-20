@@ -1,0 +1,695 @@
+[gd_scene load_steps=24 format=3 uid="uid://c7oqgbdiqbag7"]
+
+[ext_resource type="Script" path="res://scripts/device.gd" id="1_hieqi"]
+[ext_resource type="Script" path="res://scripts/input.gd" id="2_3v14c"]
+[ext_resource type="Script" path="res://scripts/Output.gd" id="2_5wopc"]
+[ext_resource type="Texture2D" uid="uid://40oo6ck5bh8m" path="res://images/RoboRIO 2.0.svg" id="3_ij4v2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3i11"]
+size = Vector2(500, 495)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0co5j"]
+size = Vector2(520, 515)
+orientation = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_mv05a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_l8w7a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2yj02"]
+radius = 10.0499
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5e0ie"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dgitg"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0el2l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7y8ic"]
+radius = 23.0868
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xl85q"]
+radius = 7.51665
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2xsvc"]
+radius = 13.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_58ya1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_13tnd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cvk87"]
+radius = 13.0384
+
+[sub_resource type="SphereMesh" id="SphereMesh_5dd5l"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6b3uh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnjtc"]
+radius = 13.0384
+
+[sub_resource type="SphereMesh" id="SphereMesh_y5ytw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_k5jgi"]
+
+[node name="Robo RIO" type="Area2D"]
+z_index = -1
+script = ExtResource("1_hieqi")
+canEnabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_s3i11")
+
+[node name="highlight" type="MeshInstance2D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_0co5j")
+
+[node name="RoboRio2_0" type="Sprite2D" parent="."]
+modulate = Color(0.757813, 0.757813, 0.757813, 1)
+texture = ExtResource("3_ij4v2")
+
+[node name="inputs" type="Node2D" parent="."]
+
+[node name="V-" type="Area2D" parent="inputs"]
+position = Vector2(-151, -182)
+script = ExtResource("2_3v14c")
+wireSizeMin = 10
+wireSizeMax = 10
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/V-"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_mv05a")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/V-"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_l8w7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/V-"]
+visible = false
+shape = SubResource("CircleShape2D_2yj02")
+
+[node name="V+" type="Area2D" parent="inputs"]
+position = Vector2(-151, -227)
+script = ExtResource("2_3v14c")
+wireSizeMin = 10
+wireSizeMax = 10
+color = Color(1, 0, 0, 1)
+
+[node name="highlight" type="MeshInstance2D" parent="inputs/V+"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_mv05a")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="inputs/V+"]
+modulate = Color(1, 0, 0, 1)
+z_index = -1
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_l8w7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="inputs/V+"]
+visible = false
+shape = SubResource("CircleShape2D_5e0ie")
+
+[node name="outputs" type="Node2D" parent="."]
+
+[node name="WireInput" type="Area2D" parent="outputs"]
+position = Vector2(76, -201)
+script = ExtResource("2_5wopc")
+color = Color(0.152941, 0.14902, 0.376471, 1)
+wireSize = 20
+type = "cat"
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/WireInput"]
+visible = false
+scale = Vector2(55, 55)
+mesh = SubResource("SphereMesh_dgitg")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="outputs/WireInput"]
+modulate = Color(0.152941, 0.14902, 0.376471, 1)
+scale = Vector2(45, 45)
+mesh = SubResource("SphereMesh_0el2l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/WireInput"]
+visible = false
+shape = SubResource("CircleShape2D_7y8ic")
+
+[node name="CAN H" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-227.5, -188.5)
+script = ExtResource("2_5wopc")
+color = Color(0.996094, 0.983448, 0.186768, 1)
+wireSize = 7
+type = "CAN"
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/CAN H"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_dgitg")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="outputs/CAN H"]
+modulate = Color(0.996094, 0.983448, 0.186768, 1)
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_0el2l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/CAN H"]
+visible = false
+z_index = 1
+shape = SubResource("CircleShape2D_xl85q")
+
+[node name="CAN L" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-227.5, -172.5)
+script = ExtResource("2_5wopc")
+color = Color(0.111984, 0.699219, 0.12116, 1)
+wireSize = 7
+type = "CAN"
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/CAN L"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_dgitg")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="outputs/CAN L"]
+modulate = Color(0.128174, 0.820313, 0.138988, 1)
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_0el2l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/CAN L"]
+visible = false
+z_index = 1
+shape = SubResource("CircleShape2D_xl85q")
+
+[node name="V-" type="Area2D" parent="outputs"]
+position = Vector2(-135, 233)
+script = ExtResource("2_3v14c")
+wireSizeMin = 10
+wireSizeMax = 10
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/V-"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_mv05a")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/V-"]
+modulate = Color(0, 0, 0, 1)
+z_index = -1
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_l8w7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/V-"]
+visible = false
+shape = SubResource("CircleShape2D_2yj02")
+
+[node name="V+" type="Area2D" parent="outputs"]
+position = Vector2(-135, 213)
+script = ExtResource("2_3v14c")
+wireSizeMin = 10
+wireSizeMax = 10
+color = Color(1, 0, 0, 1)
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/V+"]
+visible = false
+z_index = 1
+scale = Vector2(15, 15)
+mesh = SubResource("SphereMesh_mv05a")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/V+"]
+modulate = Color(1, 0, 0, 1)
+z_index = -1
+scale = Vector2(10, 10)
+mesh = SubResource("SphereMesh_l8w7a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/V+"]
+visible = false
+shape = SubResource("CircleShape2D_5e0ie")
+
+[node name="PWM1" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, -64)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM1"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM1"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM1"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM2" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, -42)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM2"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM2"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM2"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM3" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, -19)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM3"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM3"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM3"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM4" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, 4)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM4"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM4"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM4"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM5" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, 27)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM5"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM5"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM5"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM6" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, 76)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM6"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM6"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM6"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM7" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, 100)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM7"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM7"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM7"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM8" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, 145)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM8"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM8"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM8"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="PWM9" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(224, 167)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "PWM"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/PWM9"]
+visible = false
+shape = SubResource("CircleShape2D_2xsvc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/PWM9"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_58ya1")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/PWM9"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_13tnd")
+
+[node name="DIO1" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, -57)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO1"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO1"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO1"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="DIO2" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, -34)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO2"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO2"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO2"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="DIO3" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, -13)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO3"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO3"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO3"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="DIO4" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, 10)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO4"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO4"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO4"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="DIO5" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, 34)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO5"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO5"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO5"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="DIO6" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, 59)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO6"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO6"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO6"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="DIO7" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, 82)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO7"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO7"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO7"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="DIO8" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(-224, 104)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "dio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/DIO8"]
+visible = false
+shape = SubResource("CircleShape2D_cvk87")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/DIO8"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_5dd5l")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/DIO8"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_6b3uh")
+
+[node name="Analog1" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(96, 219)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "analog"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/Analog1"]
+visible = false
+shape = SubResource("CircleShape2D_cnjtc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/Analog1"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_y5ytw")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/Analog1"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_k5jgi")
+
+[node name="Analog2" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(70, 219)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "analog"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/Analog2"]
+visible = false
+shape = SubResource("CircleShape2D_cnjtc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/Analog2"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_y5ytw")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/Analog2"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_k5jgi")
+
+[node name="Analog3" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(44, 219)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "analog"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/Analog3"]
+visible = false
+shape = SubResource("CircleShape2D_cnjtc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/Analog3"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_y5ytw")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/Analog3"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_k5jgi")
+
+[node name="Analog4" type="Area2D" parent="outputs"]
+z_index = -1
+position = Vector2(19, 219)
+script = ExtResource("2_5wopc")
+color = Color(1, 1, 1, 1)
+wireSize = 10
+type = "analog"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="outputs/Analog4"]
+visible = false
+shape = SubResource("CircleShape2D_cnjtc")
+
+[node name="highlight" type="MeshInstance2D" parent="outputs/Analog4"]
+visible = false
+z_index = 1
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_y5ytw")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="outputs/Analog4"]
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_k5jgi")
